@@ -79,7 +79,6 @@ class RecentSearchFragment : Fragment(), RecentSearchListener, MeliSearchView.Se
     }
 
     private fun processRecentSearch(search: String) {
-        viewModel.getRecentSearches()
         viewModel.addRecentSearch(search)
         addSearchFragment(search)
     }
@@ -124,8 +123,7 @@ class RecentSearchFragment : Fragment(), RecentSearchListener, MeliSearchView.Se
     private fun setData(recentSearches: List<RecentSearches>) {
         if (recentSearches.isNotEmpty()) {
             recentSearchAdapterController.dispatch(recentSearches)
-        } else {
-            binding.emptyStateView.isVisible = true
         }
+        binding.emptyStateView.isVisible = recentSearches.isEmpty()
     }
 }
