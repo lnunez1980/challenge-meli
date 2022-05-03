@@ -1,0 +1,160 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+
+// All project dependencies are here with their respective version number
+ext {
+
+    // RxJava
+    rxAndroidVersion = "2.1.1"
+    rxJavaVersion = "2.2.21"
+
+    // Gradle
+    gradleVersion = '7.0.2'
+    kotlinGradleVersion = '1.5.30'
+
+    // Dagger
+    daggerVersion = '2.40.5'
+    daggerAndroidVersion = '2.40.5'
+
+    // Support Libraries
+    ktxVersion = '1.5.0'
+    materialVersion = '1.5.0'
+    appCompatVersion = '1.4.1'
+    constraintLayoutVersion = "2.1.3"
+
+    // Networking
+    gsonVersion = "2.8.9"
+    okhttpVersion = "3.14.9"
+    retrofitVersion = "2.9.0"
+
+    //Epoxy
+    epoxyVersion = "4.6.3"
+
+    // Lifecycle
+    lifecycleVersion = '2.4.1'
+    lifecycleExtensions = "2.2.0"
+
+    // Navigation
+    navigationVersion = '2.4.2'
+
+    // Image handling
+    glideVersion = "4.11.0"
+
+    // Lottie
+    lottieVersion = "3.4.0"
+
+    // Room
+
+    roomVersion = "2.4.2"
+
+    // Tests
+    testVersion = "1.0.2"
+    testCoreVersion = "1.4.0"
+    jUnitVersion = "4.13.2"
+    mockitoVersion = "3.5.11"
+    testArchCoreVersion = "2.1.0"
+    espressoVersion = "3.0.2"
+    mockWebServiceVersion = "4.9.2"
+    idlingResourceVersion = "3.4.0"
+    lottieVersion = "5.0.3"
+}
+
+android {
+    defaultConfig {
+        applicationId "com.challenge.meli"
+        minSdk 24
+        targetSdk 31
+        compileSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    testOptions {
+        animationsDisabled = true
+    }
+    kapt {
+        correctErrorTypes = true
+    }
+}
+
+dependencies {
+
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+
+    // Network
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+
+    // Dagger
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerAndroidVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+
+    // Epoxy
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+    implementation "com.airbnb.android:epoxy:$epoxyVersion"
+    kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensions"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+
+    // Navigation
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    
+    // Room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-rxjava2:$roomVersion"
+    kapt  "androidx.room:room-compiler:$roomVersion"
+
+    // Testing
+    testImplementation "junit:junit:$jUnitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.mockito:mockito-inline:$mockitoVersion"
+    testImplementation "androidx.arch.core:core-testing:$testArchCoreVersion"
+
+    androidTestImplementation "com.android.support.test:runner:$testVersion"
+    androidTestImplementation "com.android.support.test:rules:$testVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
+    androidTestImplementation "com.squareup.okhttp3:okhttp:$mockWebServiceVersion"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$mockWebServiceVersion"
+
+}

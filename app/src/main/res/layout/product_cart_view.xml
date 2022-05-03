@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/size_160"
+    android:adjustViewBounds="true"
+    android:padding="@dimen/space_8"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/size_120"
+        android:layout_margin="@dimen/space_10"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardElevation="@dimen/space_5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/product_imageview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/space_12"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_time" />
+
+            <TextView
+                android:id="@+id/product_name_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space_8"
+                android:layout_marginVertical="@dimen/space_2"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:maxLines="2"
+                android:textSize="@dimen/font_12"
+                app:layout_constraintBottom_toTopOf="@+id/product_price_textView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/product_imageview"
+                app:layout_constraintTop_toTopOf="@+id/product_imageview"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Motorola" />
+
+            <TextView
+                android:id="@+id/product_price_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space_8"
+                android:layout_marginVertical="@dimen/space_2"
+                android:gravity="start"
+                android:textSize="@dimen/font_18"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/product_imageview"
+                app:layout_constraintTop_toBottomOf="@+id/product_name_textView"
+                tools:text="$ 1.500.000" />
+
+            <TextView
+                android:id="@+id/product_condition_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space_8"
+                android:layout_marginVertical="@dimen/space_2"
+                android:gravity="start"
+                android:textSize="@dimen/font_12"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/product_imageview"
+                app:layout_constraintTop_toBottomOf="@+id/product_price_textView"
+                tools:text="Nuevo" />
+
+            <TextView
+                android:id="@+id/product_sold_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space_8"
+                android:layout_marginVertical="@dimen/space_2"
+                android:gravity="start"
+                android:textSize="@dimen/font_12"
+                app:layout_constraintStart_toEndOf="@+id/product_condition_textView"
+                app:layout_constraintTop_toBottomOf="@+id/product_price_textView"
+                tools:text="85 Vendidos" />
+
+            <TextView
+                android:id="@+id/product_free_shipping_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space_8"
+                android:layout_marginVertical="@dimen/space_2"
+                android:gravity="start"
+                android:textColor="@color/red"
+                android:textSize="@dimen/font_12"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/product_imageview"
+                app:layout_constraintTop_toBottomOf="@+id/product_condition_textView"
+                tools:text="Envio Gratis" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</merge>

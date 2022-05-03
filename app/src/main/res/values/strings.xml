@@ -1,0 +1,23 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Mercado Libre Challenge</string>
+
+    <string name="meli_url">https://api.mercadolibre.com</string>
+    <string name="search_title">Buscar</string>
+    <string name="search_hint">Buscar en Mercado Libre</string>
+    <string name="empty_state_sub_title">Buscar productos, marcas y mas…</string>
+    <string name="empty_state_title">Lo mejor está llegando</string>
+    <string name="error_message" translatable="false">Lo sentimos a ocurrido un error…</string>
+    <string name="product_detail_conditions">%1$s | %2$s Vendidos</string>
+    <string name="product_detail_sold_by"><![CDATA[Vendido por  <b>%1$s</b>]]></string>
+    <string name="product_detail_location">Ubicacion</string>
+    <string name="product_detail_location_value">%1$s - %2$s</string>
+    <string name="product_detail_information_about_the_seller">Informacion del Vendedor</string>
+    <string name="product_detail_what_you_have_to_know">Lo que tienes que saber sobre este producto</string>
+    <string name="product_card_sold">%1$s Vendidos</string>
+    <string name="product_card_new_condition">Nuevo</string>
+    <string name="product_card_used_condition">Usado</string>
+    <string name="product_card_free_shipping">Envio Gratis</string>
+    <string name="search_view_error">Debe escribir su algo antes de ejecutar</string>
+    <string name="search_empty_state_title">No encontramos lo que buscabas</string>
+    <string name="search_empty_state_sub_title">Lo mejor está llegando, sigue intentando</string>
+</resources>
