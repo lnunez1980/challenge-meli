@@ -33,6 +33,10 @@ class RecentSearchViewModel constructor(
         compositeDisposable.clear()
     }
 
+    /**
+     * method add recent searches to local data base
+     * @param search search word
+     */
     fun addRecentSearch(search: String) {
         Observable
             .fromCallable {
@@ -43,6 +47,9 @@ class RecentSearchViewModel constructor(
             .let(compositeDisposable::add)
     }
 
+    /**
+     * method get recent searches
+     */
     fun getRecentSearches() {
         recentSearchRepository.getLocalRecentSearches()
             .subscribeOn(Schedulers.io())
@@ -59,6 +66,10 @@ class RecentSearchViewModel constructor(
             .let(compositeDisposable::add)
     }
 
+    /**
+     * method filter recent searches
+     * @param filter filter characters
+     */
     fun filterRecentSearches(filter: String) {
         recentSearchRepository.filterRecentSearches(filter)
             .subscribeOn(Schedulers.io())
@@ -77,6 +88,10 @@ class RecentSearchViewModel constructor(
         _recentSearchActions.value =
             RecentSearchActions.RecentSearchLoading(loading)
     }
+
+    /**
+     * actions to control ui changes
+     */
 
     sealed class RecentSearchActions {
         class RecentSearchLoading(val loading: Boolean) : RecentSearchActions()

@@ -34,6 +34,10 @@ class SearchViewModel constructor(
         compositeDisposable.clear()
     }
 
+    /**
+     * method get products of api
+     * @param search search word
+     */
     fun getSearch(search: String? = null) {
         addRecentSearch(search ?: querySearch)
         searchRepository.searchBy(search ?: querySearch)
@@ -48,6 +52,10 @@ class SearchViewModel constructor(
             .let(compositeDisposable::add)
     }
 
+    /**
+     * method add recent searches to local data base
+     * @param search search word
+     */
     private fun addRecentSearch(search: String) {
         Observable
             .fromCallable {
@@ -62,6 +70,9 @@ class SearchViewModel constructor(
         _searchActions.value = SearchActions.SearchLoading(loading)
     }
 
+    /**
+     * method get recent searches
+     */
     sealed class SearchActions {
         class SearchLoading(val loading: Boolean) : SearchActions()
         class ProductSearchFound(val products: List<Product>) : SearchActions()

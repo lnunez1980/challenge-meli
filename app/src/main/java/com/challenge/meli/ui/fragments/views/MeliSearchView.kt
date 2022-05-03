@@ -23,8 +23,21 @@ class MeliSearchView @JvmOverloads constructor(
 ) : AppCompatEditText(context, attrs, defStyleAttr) {
 
     interface SearchViewListener {
+        /**
+         * event called when press enter
+         * @param search search word
+         */
         fun onSearch(search: String)
+
+        /**
+         * event is called each time a key is pressed to filter recent searches
+         * @param search search word
+         */
         fun onFilterRecentSearches(search: String) {}
+
+        /**
+         * event is called when the search field is empty
+         */
         fun onEmptySearchByFilter() {}
     }
 
