@@ -125,5 +125,6 @@ class RecentSearchFragment : Fragment(), RecentSearchListener, MeliSearchView.Se
         if (recentSearches.isNotEmpty()) {
             recentSearchAdapterController.dispatch(recentSearches)
         }
+        binding.emptyStateView.isVisible = recentSearchAdapterController.data.isEmpty()
     }
 }

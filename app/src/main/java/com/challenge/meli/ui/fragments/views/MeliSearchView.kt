@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.KeyEvent
-import android.view.View.OnKeyListener
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -49,6 +48,7 @@ class MeliSearchView @JvmOverloads constructor(
             compoundDrawables[DRAWABLE_RIGHT]?.let {
                 if (event.rawX >= right - it.bounds.width()) {
                     setText("")
+                    listener?.onEmptySearchByFilter()
                 }
             }
             false
