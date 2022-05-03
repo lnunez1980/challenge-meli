@@ -71,10 +71,11 @@ class RecentSearchFragment : Fragment(), RecentSearchListener, MeliSearchView.Se
     }
 
     override fun onFilterRecentSearches(search: String) {
+        binding.emptyStateView.isVisible = recentSearchAdapterController.data.isEmpty()
         viewModel.filterRecentSearches(search)
     }
 
-    override fun onEmptySearch() {
+    override fun onEmptySearchByFilter() {
         viewModel.getRecentSearches()
     }
 
@@ -124,6 +125,5 @@ class RecentSearchFragment : Fragment(), RecentSearchListener, MeliSearchView.Se
         if (recentSearches.isNotEmpty()) {
             recentSearchAdapterController.dispatch(recentSearches)
         }
-        binding.emptyStateView.isVisible = recentSearches.isEmpty()
     }
 }

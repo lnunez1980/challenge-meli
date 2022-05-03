@@ -13,7 +13,7 @@ interface RecentSearchDao {
     @Query("SELECT * FROM recent_searches GROUP BY search")
     fun getRecentSearches(): Single<List<RecentSearches>>
 
-    @Query("SELECT * FROM recent_searches WHERE search LIKE '%' || :filter || '%' GROUP BY search")
+    @Query("SELECT * FROM recent_searches WHERE search LIKE :filter || '%' GROUP BY search")
     fun filterRecentSearch(filter: String): Single<List<RecentSearches>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

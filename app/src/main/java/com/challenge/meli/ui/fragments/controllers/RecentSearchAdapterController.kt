@@ -10,7 +10,7 @@ class RecentSearchAdapterController constructor(
     private val listener: RecentSearchListener
 ) : AsyncEpoxyController() {
 
-    private var data: List<RecentSearches> = listOf()
+    var data: List<RecentSearches> = listOf()
         set(value) {
             field = value
             requestModelBuild()

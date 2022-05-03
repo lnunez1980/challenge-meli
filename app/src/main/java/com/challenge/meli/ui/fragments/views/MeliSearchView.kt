@@ -26,7 +26,7 @@ class MeliSearchView @JvmOverloads constructor(
     interface SearchViewListener {
         fun onSearch(search: String)
         fun onFilterRecentSearches(search: String) {}
-        fun onEmptySearch() {}
+        fun onEmptySearchByFilter() {}
     }
 
     private var listener: SearchViewListener? = null
@@ -49,7 +49,6 @@ class MeliSearchView @JvmOverloads constructor(
             compoundDrawables[DRAWABLE_RIGHT]?.let {
                 if (event.rawX >= right - it.bounds.width()) {
                     setText("")
-                    true
                 }
             }
             false
@@ -62,15 +61,12 @@ class MeliSearchView @JvmOverloads constructor(
             when {
                 isKeyCodeEnterPressed(event, keyCode, !text.isNullOrEmpty()) -> {
                     listener.onSearch(text.toString())
-                    return@OnKeyListener true
                 }
                 isKeyCodeEnterPressed(event, keyCode, text.isNullOrEmpty()) -> {
                     error = resources.getString(R.string.search_view_error)
-                    return@OnKeyListener true
                 }
                 isKeyCodeDelPressed(event, keyCode) -> {
-                    listener.onEmptySearch()
-                    return@OnKeyListener true
+                    listener.onEmptySearchByFilter()
                 }
             }
             false
@@ -103,8 +99,8 @@ class MeliSearchView @JvmOverloads constructor(
                 isEmpty
 
     private fun isKeyCodeDelPressed(event: KeyEvent, keyCode: Int) =
-        text.toString().isEmpty() &&
-                event.action == KeyEvent.ACTION_UP &&
+        text.toString().length <= 1 &&
+                event.action == KeyEvent.ACTION_DOWN &&
                 keyCode == KeyEvent.KEYCODE_DEL
 
     private fun setIconClear() {
