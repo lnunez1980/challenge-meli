@@ -11,6 +11,8 @@ in this architecture the business logic is decoupled from the user interface and
 - Search 
 - product detail
 
+<img src="./video.gif"/>
+
 ## Tech
 
 For this project I use the following technologies:
