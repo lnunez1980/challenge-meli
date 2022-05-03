@@ -32,7 +32,9 @@ class MeliSearchView @JvmOverloads constructor(
         isSingleLine = true
         doOnTextChanged { text, _, _, _ ->
             error = null
-            listener?.onFilterRecentSearches(text.toString())
+            if (text.toString().isNotEmpty()) {
+                listener?.onFilterRecentSearches(text.toString())
+            }
         }
     }
 
