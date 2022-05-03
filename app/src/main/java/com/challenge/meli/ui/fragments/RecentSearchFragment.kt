@@ -74,7 +74,12 @@ class RecentSearchFragment : Fragment(), RecentSearchListener, MeliSearchView.Se
         viewModel.filterRecentSearches(search)
     }
 
+    override fun onEmptySearch() {
+        viewModel.getRecentSearches()
+    }
+
     private fun processRecentSearch(search: String) {
+        viewModel.getRecentSearches()
         viewModel.addRecentSearch(search)
         addSearchFragment(search)
     }

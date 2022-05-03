@@ -22,6 +22,7 @@ class MeliSearchView @JvmOverloads constructor(
     interface SearchViewListener {
         fun onSearch(search: String)
         fun onFilterRecentSearches(search: String) {}
+        fun onEmptySearch() {}
     }
 
     private var listener: SearchViewListener? = null
@@ -38,12 +39,19 @@ class MeliSearchView @JvmOverloads constructor(
     fun setListener(listener: SearchViewListener) {
         this.listener = listener
         setOnKeyListener(OnKeyListener { _, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER && !text.isNullOrEmpty()) {
-                listener.onSearch(text.toString())
-                return@OnKeyListener true
-            } else if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER && text.isNullOrEmpty()) {
-                error = resources.getString(R.string.search_view_error)
-                return@OnKeyListener true
+            when {
+                isKeyCodeEnterPressed(event, keyCode, !text.isNullOrEmpty()) -> {
+                    listener.onSearch(text.toString())
+                    return@OnKeyListener true
+                }
+                isKeyCodeEnterPressed(event, keyCode, text.isNullOrEmpty()) -> {
+                    error = resources.getString(R.string.search_view_error)
+                    return@OnKeyListener true
+                }
+                isKeyCodeDelPressed(event, keyCode) -> {
+                    listener.onEmptySearch()
+                    return@OnKeyListener true
+                }
             }
             false
         })
@@ -68,4 +76,14 @@ class MeliSearchView @JvmOverloads constructor(
     private fun setRoundedBackground() {
         background = ContextCompat.getDrawable(context, R.drawable.rounded_corner)
     }
+
+    private fun isKeyCodeEnterPressed(event: KeyEvent, keyCode: Int, isEmpty: Boolean) =
+        event.action == KeyEvent.ACTION_DOWN &&
+                keyCode == KeyEvent.KEYCODE_ENTER &&
+                isEmpty
+
+    private fun isKeyCodeDelPressed(event: KeyEvent, keyCode: Int) =
+        text.toString().isEmpty() &&
+                event.action == KeyEvent.ACTION_UP &&
+                keyCode == KeyEvent.KEYCODE_DEL
 }

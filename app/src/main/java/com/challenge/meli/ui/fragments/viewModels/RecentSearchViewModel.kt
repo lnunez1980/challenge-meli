@@ -1,6 +1,5 @@
 package com.challenge.meli.ui.fragments.viewModels
 
-import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
@@ -44,7 +43,6 @@ class RecentSearchViewModel constructor(
             .let(compositeDisposable::add)
     }
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun getRecentSearches() {
         recentSearchRepository.getLocalRecentSearches()
             .subscribeOn(Schedulers.io())
