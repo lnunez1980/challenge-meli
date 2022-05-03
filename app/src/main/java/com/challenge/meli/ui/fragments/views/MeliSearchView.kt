@@ -57,7 +57,7 @@ class MeliSearchView @JvmOverloads constructor(
 
     fun setListener(listener: SearchViewListener) {
         this.listener = listener
-        setOnKeyListener(OnKeyListener { _, keyCode, event ->
+        setOnKeyListener { _, keyCode, event ->
             when {
                 isKeyCodeEnterPressed(event, keyCode, !text.isNullOrEmpty()) -> {
                     listener.onSearch(text.toString())
@@ -70,7 +70,7 @@ class MeliSearchView @JvmOverloads constructor(
                 }
             }
             false
-        })
+        }
     }
 
     private fun setupStyle() {
