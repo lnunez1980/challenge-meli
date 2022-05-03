@@ -1,5 +1,6 @@
 package com.challenge.meli.ui.fragments.views
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.KeyEvent
@@ -11,8 +12,11 @@ import androidx.core.view.setPadding
 import androidx.core.widget.doOnTextChanged
 import com.challenge.meli.R
 import com.challenge.meli.helpers.setDrawableLeft
+import com.challenge.meli.helpers.setDrawableRight
 
+const val DRAWABLE_RIGHT = 2
 
+@SuppressLint("ClickableViewAccessibility")
 class MeliSearchView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -35,6 +39,20 @@ class MeliSearchView @JvmOverloads constructor(
             if (text.toString().isNotEmpty()) {
                 listener?.onFilterRecentSearches(text.toString())
             }
+            setIconClear()
+        }
+        setupListenerClearIcon()
+    }
+
+    private fun setupListenerClearIcon() {
+        setOnTouchListener { _, event ->
+            compoundDrawables[DRAWABLE_RIGHT]?.let {
+                if (event.rawX >= right - it.bounds.width()) {
+                    setText("")
+                    true
+                }
+            }
+            false
         }
     }
 
@@ -88,4 +106,21 @@ class MeliSearchView @JvmOverloads constructor(
         text.toString().isEmpty() &&
                 event.action == KeyEvent.ACTION_UP &&
                 keyCode == KeyEvent.KEYCODE_DEL
+
+    private fun setIconClear() {
+        if (!text.isNullOrEmpty()) {
+            setDrawableRight(
+                ResourcesCompat.getDrawable(resources, R.drawable.ic_cancel, null),
+                ResourcesCompat.getColor(resources, R.color.grey, null)
+            )
+        } else {
+            setCompoundDrawables(null, null, null, null)
+            setDrawableLeft(
+                ResourcesCompat.getDrawable(resources, R.drawable.ic_search, null),
+                ResourcesCompat.getColor(resources, R.color.grey, null)
+            )
+        }
+    }
+
+
 }
